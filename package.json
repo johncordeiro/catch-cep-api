@@ -1,0 +1,31 @@
+{
+  "name": "catch-cep-api",
+  "version": "1.0.0",
+  "description": "a api for catch the cep and return the localization of the user",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaslima18/catch-cep-api.git"
+  },
+  "keywords": [
+    "api",
+    "cep",
+    "parse",
+    "localization"
+  ],
+  "author": "lucas lima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaslima18/catch-cep-api/issues"
+  },
+  "homepage": "https://github.com/lucaslima18/catch-cep-api#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "parse": "^2.1.0",
+    "parse-server": "^3.1.3"
+  }
+}
