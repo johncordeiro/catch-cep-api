@@ -1,6 +1,7 @@
 var Parse = require('parse/node');
 var express = require('express');
 var app = express();
+var request = require('request');
 
 
 Parse.Cloud.define("singup", async (request) => {
@@ -11,7 +12,7 @@ Parse.Cloud.define("singup", async (request) => {
     user.set("email", "lucas.ala1999@gmail.com");
 
     user.save(null, {useMasterKey:true})
-    .then((gameScore) => {
+    .then((user) => {
       // Execute any logic that should take place after the object is saved.
       response.success(object.user);
     }, (error) => {
@@ -23,18 +24,17 @@ Parse.Cloud.define("singup", async (request) => {
 });
 
 Parse.Cloud.define("create", async (request) => {
-  const GameScore = Parse.Object.extend("GameScore");
-  const gameScore = new GameScore();
+  const TestObject = Parse.Object.extend("TestObject");
+  const lucas = new TestObject();
 
-  gameScore.set("score", 1337);
-  gameScore.set("playerName", "Sean Plott");
-  gameScore.set("cheatMode", false);
+  lucas.set("Name", "Lucas Lima");
+  lucas.set("Age", 19);
+  lucas.set("Programer", true);
 
-  gameScore.save()
-  .then((gameScore) => {
+  lucas.save(null, {useMasterKey:true})
+  .then((lucas) => {
     // Execute any logic that should take place after the object is saved.
-    response.success(1);
-    alert('New object created with objectId: ' + gameScore.id);
+    response.success(object.lucas);
   }, (error) => {
     // Execute any logic that should take place if the save fails.
     // error is a Parse.Error with an error code and message.
@@ -44,5 +44,17 @@ Parse.Cloud.define("create", async (request) => {
 });
 
 Parse.Cloud.define("cep", async (request) => {
-  response.success("hello world")
+  router.get('/', function(req, res, next) {
+    request({
+      uri: 'http://www.giantbomb.com/api/search',
+      qs: {
+        api_key: '123456',
+        query: 'World of Warcraft: Legion'
+      }
+    }).pipe(res);
+  });
+
+  module.exports = router;
+
+
 });
