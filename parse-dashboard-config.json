@@ -4,7 +4,8 @@
       "serverURL": "http://localhost:1337/parse",
       "appId": "33251611",
       "masterKey": "40028922",
-      "appName": "catch-cep"
+      "restAPIKey": "988104506",
+      "appName": "catch-cep"    
     }
   ]
 }
