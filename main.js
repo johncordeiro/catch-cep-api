@@ -1,6 +1,7 @@
 var Parse = require('parse/node');
 var express = require('express');
 var app = express();
+var router = express.Router();
 var request = require('request');
 
 
@@ -44,17 +45,22 @@ Parse.Cloud.define("create", async (request) => {
 });
 
 Parse.Cloud.define("cep", async (request) => {
-  router.get('/', function(req, res, next) {
-    request({
-      uri: 'http://www.giantbomb.com/api/search',
-      qs: {
-        api_key: '123456',
-        query: 'World of Warcraft: Legion'
-      }
-    }).pipe(res);
-  });
+    try{
+      const { Cep } = request.params;
+      const http = require('http');
 
-  module.exports = router;
+      Parse.Cloud.httpRequest({
 
+        url: `http://viacep.com.br/ws/${ Cep }/json/`//put your rest url
 
+      }).then(function(httpResponse) {
+        console.log(httpResponse.text);//success call back
+      }, function(httpResponse) {
+        'response code ' + httpResponse.status;//Error call back
+      });
+    }
+
+    catch (err) {
+      console.log(err);
+    }
 });
